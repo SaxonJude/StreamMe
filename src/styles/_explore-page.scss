@@ -1,0 +1,51 @@
+@import './variables';
+
+.explore-wave-bot {
+    z-index: 0;
+    height: 337px;
+    width: 603px;
+    background-color: rgba(0, 0, 0, 0.137);
+    background-image: url(./images/explorebotwave.svg);
+    background-repeat: no-repeat;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.explore-content {
+    z-index: 1;
+    margin: 52px 55px;
+    height: 87vh;
+    width: 100%;
+    @include flex-custom(column, space-between, flex-start);
+    h1 {
+        color: $color-white;
+        font-size: 30px;
+        font-weight: 500;
+        margin: 0;
+    }
+    .newrelease-carousels {
+        height: 650px;
+        width: 1077px;
+        @include flex-custom(column, space-between, flex-start);
+        section {
+            background-color: rgb(201, 201, 201);
+            height: 283px;
+            width: 1077px;
+        }
+    }
+    .page-buttons {
+        button {
+            background-color: transparent;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            cursor: pointer;
+            color: $color-white;
+            border: 2px solid $color-white;
+            height: 33px;
+            width: 30px;
+        }
+        button:first-of-type { margin-right: 27px; }
+    }
+}
