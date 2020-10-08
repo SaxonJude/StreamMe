@@ -1,0 +1,194 @@
+@import './variables';
+
+.detail-root {
+    width: 100vw;
+    .movie-detail-background {
+        position: relative;
+        height: 75vh;
+        width: 100%;
+        background-image: url(./images/interstella.jpg);
+        background-size: cover;
+        background-position: bottom;
+        background-repeat: no-repeat;
+        .bottom_gradient {
+            @include nav-gradient-bot(#222B31);
+            position: absolute;
+            bottom: 0;
+            height: 65px;
+            width: 100%;
+        }
+    }
+    .movie-detail-content {
+        position: relative;
+        @include flex-custom(column, center, center);
+        height: 85vh;
+        width: 100%;
+        background-color: $brand-color-darkblue;
+        .movie-detail-container {
+            position: absolute;
+            bottom: 12vh;
+            height: 100vh;
+            max-height: 950px;
+            width: 1035px;
+            max-width: 1035px;
+            .container-top {
+                @include flex-custom(row, center, center);
+                height: 414px;
+                width: 100%;
+                .movie-poster {
+                    height: 100%;
+                    width: 342px;
+                    background-color: rgb(223, 223, 223);
+                }
+                .movie-description {
+                    position: relative;
+                    height: 100%;
+                    width: 425px;
+                    padding: 0px 30px;
+                    content {
+                        h1 {
+                            margin: 70px 0 30px 0;
+                            color: $color-white;
+                            font-weight: 500;
+                        }
+                        span { button { @include movie-detail-tag; } }
+                        div {
+                            font-weight: 400;
+                            color: white;
+                            @include flex-custom(row, flex-start, center);
+                            span {
+                                padding-left: 15px;
+                            }
+                        }
+                    }
+                    .summary {
+                        padding-top: 20px;
+                        font-weight: 500;
+                        color: $color-white;
+                        h1 {
+                            margin: 0;
+                            padding: 15px 0;
+                            text-transform: uppercase;
+                            font-size: 18px;
+                        }
+                        p {
+                            margin: 0;
+                            font-size: 16px;
+                        }
+                    }
+                }
+                .rating-card {
+                    position: relative;
+                    margin-top: -24px;
+                    height: 390px;
+                    width: 268px;
+                    .rating {
+                        @include flex-custom(column, center, center);
+                        height: 345px;
+                        width: 100%;
+                        background-color: $brand-color-red;
+                        .rating-top {
+                            @include flex-custom(column, center, center);
+                            height: 237px;
+                            width: 100%;
+                            span {
+                                font-weight: 100;
+                                color: $color-white;
+                                font-size: 144px;
+                            }
+                        }
+                        .rating-bot {
+                            @include flex-custom(row, center, center);
+                            height: 108px;
+                            width: 100%;
+                            * { @include flex-custom(row, center, center); }
+                            span:first-of-type {
+                                @include rating-cards;
+                                background-color: #FF5454;
+                            }
+                            span:last-of-type {
+                                @include rating-cards;
+                                background-color: #EE4848;
+                            }
+                        }
+                    }
+                    .card-buttons {
+                        @include flex-custom(row, center, center);
+                        position: absolute;
+                        bottom: 0;
+                        width: 100%;
+                        button {
+                            padding: 0px;
+                            color: $color-white;
+                            border: 2px solid $brand-color-red;
+                            background-color: rgba(0, 0, 0, 0.144);
+                            height: 36px;
+                            font-size: 14px;
+                            color: $brand-color-red;
+                            font-weight: 600;
+                            cursor: pointer;
+                        }
+                        button:first-of-type {
+                            margin-right: 8px;
+                            width: 219px;
+                        }
+                        button:last-of-type {
+                            width: 41px;
+                        }
+                    }
+                }
+            }
+            .container-bot {
+                @include flex-custom(row, center, center);
+                height: 55vh;
+                width: 100%;
+                max-height: 500px;
+                padding: 36px 0;
+                .trailer-review {
+                    @include flex-custom(column, space-between, flex-start);
+                    height: 100%;
+                    width: 50%;
+                    * h1 {
+                        color: #fff;
+                        margin: 0;
+                        font-weight: 500;
+                        font-size: 18px;
+                        text-transform: uppercase;
+                    }
+                    .trailer {
+                        position: relative;
+                        height: 50%;
+                        width: 100%;
+                        div {
+                            position: absolute;
+                            bottom: 5px;
+                            background-color: white;
+                            height: 200px;
+                            width: 450px;
+                        }
+                    }
+                    .review {
+                        position: relative;
+                        height: 50%;
+                        width: 100%;
+                        h1 {
+                            padding-top: 10px;
+                        }
+                        div {
+                            position: absolute;
+                            bottom: 0;
+                            background-color: white;
+                            height: 200px;
+                            width: 450px;
+                        }
+                    }
+                }
+                .cast {
+                    height: 100%;
+                    width: 50%;
+                    background-color: white;
+                }
+            }
+        }
+    }
+}
