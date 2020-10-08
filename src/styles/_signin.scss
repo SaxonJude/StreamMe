@@ -1,0 +1,71 @@
+@import './variables';
+
+.signin-body {
+    @include flex-custom(row, center, center);
+    background-color: $brand-color-lightblue;
+    height: 92.8vh;
+    width: 100vw;
+    .signin-route {
+        @include account-route-box;
+        display: flex;
+        border-radius: $borderr-15;
+        .signin-left {
+            border-radius: 15px 0px 0px 15px;
+            width: 736px;
+            @include flex-custom(row, center, center);
+            background-color: $color-white;
+            content {
+                @include flex-custom(column, center, center);
+                align-items: center;
+                @include anchor-underline;
+                padding-top: 0px;
+                h1 {
+                    font-weight: 500;
+                    font-size: 48px;
+                    color: $brand-color-red;
+                }
+                .sign-in-inputs {
+                    @include flex-custom(column, center, center);
+                    input { @include account-input; }
+                    input::placeholder {
+                        position: relative;
+                        left: 10px;
+                        opacity: 0.8;
+                    }
+                }
+                .sign-in-btn {
+                    @include button-nofill;
+                    font-size: $header-text;
+                }
+                .links ul {
+                   @include social-links;
+                   padding-left: 0;
+                   i {
+                        color: $color-black;
+                   }
+                }
+                .bottom-i {
+                    padding-top: 35px;
+                }
+                .back-btn {
+                    position: relative;
+                    font-size: 18px;
+                    top: 20px;
+                    right: 155px;
+                    color: #121212c4;
+                    i {
+                        padding-right: 5px;
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+        .signin-right {
+            width: 514px;
+            border-radius: 0 15px 15px 0;
+            background-image: url(./images/redwaves.svg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    }
+}
