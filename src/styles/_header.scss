@@ -1,0 +1,68 @@
+@import './variables';
+
+.nav-1 {
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    transition: .4s;
+    color: $color-white;
+    height: 70px;
+    width: 100%;
+    @include flex-custom(row, space-between, center);
+    @include nav-gradient-top;
+    .movie-list-1 {
+        @include flex-custom(row, center, center);
+        font-weight: 800;
+        position: relative;
+        left: 77px;
+        #logo { @include logo($brand-color-red); }
+        ul {
+            display: flex;
+            list-style-type: none;
+            @include anchor-underline;
+            font-weight: 400;
+            font-size: 18px;
+            a { margin-right: 34px; }
+            a:hover { color: $brand-color-red; }
+        }
+    }
+    .user-list-1 {
+        @include anchor-underline;
+        @include flex-custom(row, center, center);
+        position: relative;
+        right: 77px;
+        font-size: 20px;
+        a { padding-left: 26px; }
+        a:hover { color: $brand-color-red; }
+    }
+    .search-bar {
+        @include flex-custom(row, center, center);
+        background-color: $text-box-bg;
+        width: 267px;
+        height: 29px;
+        border: 1px solid #fff;
+        i {
+            color: rgba(255, 255, 255, 0.418);
+            position: relative;
+            right: 4px;
+            top: 1px;
+        }
+        input {
+            position: relative;
+            left: 5px;
+            top: 1px;
+            font-size: 15px;
+            border: none;
+            outline: none;
+            background-color: transparent;
+            width: 215px;
+            color: $color-white;
+        }
+        input::placeholder {
+            font-weight: 200;
+            color: $color-white;
+        }
+    }
+}
+
+.nav-1.active { background: #121212; }
