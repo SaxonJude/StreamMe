@@ -1,0 +1,132 @@
+@import './variables';
+
+.movie {
+    opacity: 0.7;
+    @include box-shadow-25;
+}
+.movie:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.header {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background-image: url(./images/landing.jpg);
+    background-attachment: scroll;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    .movie-details {
+        color: $color-white;
+        @include flex-custom(column, center, flex-start);
+        text-transform: uppercase;
+        position: absolute;
+        bottom: 34px;
+        left: 77px;
+        header {
+            font-size: 18px;
+            position: relative;
+            top: 18px;
+        }
+        h1 {
+            font-size: $header-text;
+            position: relative;
+            top: 15px;
+            font-weight: 600;
+            letter-spacing: $small-letter-spacing;
+        }
+        h3 {
+            font-size: 14px;
+            font-weight: 300;
+        }
+        span { color: $brand-color-red; }
+    }
+    .bottom_gradient {
+        @include nav-gradient-bot(rgba(0,0,1,1));
+        position: absolute;
+        bottom: 0;
+        height: 65px;
+        width: 100%;
+    }
+}
+
+.movie_list {
+    position: relative;
+    height: 200vh;
+    width: 100%;
+    background-color: #222B31;
+    @include flex-custom(row, center, center);
+    * { margin: 0; }
+    .movie-container {
+        @include flex-custom(column, center, center);
+        position: absolute;
+        top: 70px;
+        left: 80px;
+        height: 160vh;
+        width: 90vw;
+        .divide-line {
+            height: 40px;
+            width: 100%;
+            @include flex-custom(row, center, center);
+            span {
+                display: block;
+                height: 1px;
+                width: 80%;
+                background: rgb(255,255,255);
+                background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(0,0,0,0) 100%);
+            }
+        }
+        .home-carousel {
+            height: 25%;
+            width: 100%;
+            div {
+                @include flex-custom(row, center, center);
+                height: 278px;
+                width: 100%;
+                max-width: 1750px;
+                // border: 1px solid black;
+            }
+            h1 {
+                padding: 0 0 30px 0;
+                font-size: $header-text;
+                color: $color-white;
+                text-transform: uppercase;
+                font-weight: 500;
+            }
+        }
+    }
+}
+.footer_wave {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+footer {
+    position: relative;
+    height: 50vh;
+    width: 100%;
+    background-color: $brand-color-black;
+    color: $color-white;
+    @include flex-custom(column, center, center);
+    div:first-of-type {
+        width: 900px;
+        * {
+            list-style-type: none;
+            padding-inline-start: 0px;
+        }
+        h3 { @include logo($brand-color-red); }
+        content ul {
+            @include flex-custom(row, space-between, flex-start);
+            h1 {
+                text-align: center;
+                font-size: $header-text;
+                text-decoration: line-through;
+                font-weight: 600;
+            }
+            p { font-size: 18px; }
+        }
+        .links ul { @include social-links; }
+    }
+}
