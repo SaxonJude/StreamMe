@@ -1,0 +1,82 @@
+@import './variables';
+
+.auth-body {
+    @include flex-custom(column, center, center);
+    background-color: $brand-color-lightblue;
+    height: 92.8vh;
+    width: 100vw;
+    .auth-route {
+        @include account-route-box;
+        display: flex;
+        border-radius: $borderr-15;
+        .auth-left {
+            border-radius: 17px 0px 0px 15px;
+            height: 100%;
+            width: 736px;
+            background-color: $color-white;
+            section {
+                height: 275px;
+                background-image: url(./images/wavvytop.svg);
+                background-size: cover;
+                background-repeat: no-repeat;
+                border-radius: 14px 0 0 0;
+                @include flex-custom(row, center, center);
+                h1 {
+                    @include logo($brand-color-red);
+                    font-size: 48px;
+                }
+            }
+            content {
+                padding-top: 50px;
+                @include flex-custom(column, center, center);
+                text-align: center;
+                @include anchor-underline;
+                h1 {
+                    font-weight: 500;
+                    text-transform: uppercase;
+                    font-size: $header-text;
+                    margin: 30px;
+                }
+                .account-first-link {
+                    @include button-nofill;
+                    font-size: $header-text;
+                }
+                a:nth-child(3){
+                    @include button-nofill;
+                    font-size: $header-text;
+                    color: white;
+                    background-color: $brand-color-red;
+                }
+                a:nth-child(4){
+                    @include button-nofill;
+                    color: white;
+                    background-color: $brand-color-darkred;
+                    border-color: $brand-color-darkred;
+                    font-size: $header-text;
+                }
+                i {
+                    padding-top: 37px;
+                    color: #6A6A6A;
+                    font-size: 19px;
+                }
+                .back-btn {
+                    position: relative;
+                    font-size: 18px;
+                    right: 155px;
+                    color: #121212c4;
+                    i {
+                        padding-right: 5px;
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+        .auth-right {
+            width: 514px;
+            border-radius: 0 15px 15px 0;
+            background-image: url(./images/redwaves.svg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    }
+}
