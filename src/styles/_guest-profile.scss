@@ -1,0 +1,141 @@
+@import './variables';
+
+.profile {
+    position: relative;
+    height: 100vh;
+    @include flex-custom(row, center, center);
+    .profile-container {
+        min-width: 1600px;
+        width: 100vw;
+        height: 100vh;
+        background-color: $brand-color-darkblue;
+        @include flex-custom(row, flex-start, flex-start);
+        .sidebar {
+            position: relative;
+            color: $color-white;
+            min-width: 236px;
+            height: 100vh;
+            background-color: #191C1F;
+            .sidebar-content {
+                @include anchor-underline;
+                ul {
+                    margin-top: 0px;
+                    height: 300px;
+                    padding-left: 0px;
+                    .sidebar-active {
+                        background-color: $brand-color-lightblue;
+                        color: $brand-color-red;
+                        position: relative;
+                        i {
+                            color: rgba(255, 255, 255, 0.575);
+                            position: absolute;
+                            right: 40px;
+                        }
+                    }
+                    li {
+                        @include flex-custom(column, space-evenly, flex-start);
+                        width: 236px;
+                        height: 60px;
+                        list-style-type: none;
+                        font-size: 18px;
+                        font-weight: 500;
+                        p { padding-left: 40px; }
+                    }
+                    li:hover {
+                        background-color: $brand-color-lightblue;
+                        cursor: pointer;
+                    }
+                }
+            }
+            span { @include white-bar; }
+            .sidebar-wave {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                height: 161px;
+                width: 210px; 
+                background-image: url(./images/sidebarwave.svg);
+                background-repeat: no-repeat;  
+            }
+        }
+        .profile-info {
+            padding: 30px 30px;
+            .profile-card {
+                @include box-shadow-25;
+                @include user-card;
+                border-radius: 15px;
+                .guest-card-image { @include guest-card-image; }
+                .user-card-image { @include user-card-image; }
+                .card-text {
+                    height: 180px;
+                    @include flex-custom(column, center, center);
+                    h1 {
+                        margin-block-start: 0;
+                        font-weight: 500;
+                        font-size: $header-text;
+                    }
+                    a { @include brand-button-outline; }
+                }
+            }
+            .profile-stats {
+                margin-top: 25px;
+                width: 400px;
+                height: 400px;
+                ul {
+                    height: 100%;
+                    list-style-type: none;
+                    @include flex-custom(column, space-evenly, center);
+                    padding-left: 0;
+                    li {
+                        @include box-shadow-25;
+                        height: 80px;
+                        background-color: #fff;
+                        width: 100%;
+                        border-radius: 15px;
+                        margin-bottom: 25px;
+                        @include flex-custom(row, flex-start, center);
+                        font-size: $header-text;
+                        span {
+                            padding-left: 50px;
+                            font-weight: 600;
+                            color: $brand-color-red;
+                        }
+                        p {
+                            font-weight: 500;
+                            padding-left: 40px;
+                        }
+                    }
+                }
+            }
+        }
+        .profile-movie-info {
+            @include box-shadow-25;
+            margin: 30px 15px 30px 0px;
+            border-radius: 15px;
+            height: 915px;
+            width: 880px;
+            background-color: $brand-color-lightblue;
+            ul {
+                color: $color-white;
+                font-weight: 400;
+                list-style-type: none;
+                li {
+                    padding-top: 1px;
+                    h1 {
+                        text-transform: uppercase;
+                        font-size: $header-text;
+                        font-weight: 300;
+                    }
+                    .movie-box-test {
+                        @include box-shadow-25;
+                        @include flex-custom(row, center, center);
+                        height: 155px;
+                        min-width: 800px;
+                        width: 800px;
+                        background-color: #51626e;
+                    }
+                }
+            }
+        }
+    }
+}
