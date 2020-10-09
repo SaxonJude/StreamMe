@@ -1,0 +1,199 @@
+$color-white: #fff;
+$color-black: #000;
+$color-auth-input: #D2E0E5;
+$nav-gradient-black: #1f1f1f;
+$small-letter-spacing: 1px;
+$medium-letter-spacing: 2px;
+$large-letter-spacing: 5px;
+$brand-color-red: #FF424F; 
+$brand-color-darkred: #E14B4B;
+$brand-color-lightblue: #2D373E;
+$brand-color-darkblue: #222B31;
+$brand-color-black: #1F1F1F;
+$text-box-bg: #44444481;
+$borderr-15: 15px;
+$header-text: 24px;
+
+@mixin nav-gradient-top {
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.233) 37%, rgba(0, 0, 1, 0.603) 60%, rgba(0,0,1,1) 100%);
+}
+@mixin nav-gradient-bot($color) {
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(166, 166, 167, 0.027) 37%, $color 100%);
+    position: absolute;
+    bottom: 0;
+    height: 65px;
+    width: 100%;
+}
+@mixin flex-custom($direction, $justify, $align) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+@mixin anchor-underline {
+    a { color: inherit; }
+}
+@mixin button-nofill {
+    @include flex-custom(row, center, center);
+    border: 3px solid $brand-color-red;
+    color: $brand-color-red;
+    font-weight: 600;
+    border-radius: 10px;
+    height: 70px;
+    width: 370px;
+    margin-block-start: 10px;
+}
+@mixin logo($span) {
+    color: $color-white;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: $medium-letter-spacing;
+    font-size: 28px;
+    span {
+        color: $span;
+        font-weight: 400;
+    }
+}
+@mixin account-route-box {
+    background-color: transparent;
+    width: 1250px;
+    height: 860px;
+    max-height: 906px;
+    -webkit-box-shadow: 0px 0px 35px 2px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 0px 35px 2px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 35px 2px rgba(0,0,0,0.1);
+}
+@mixin social-links {
+    @include flex-custom(row, space-between, center);
+    list-style-type: none;
+    i {
+        font-size: 28px;
+        padding-right: 22px;
+    }
+    li:last-of-type {
+        i { padding-right: 0px; }
+    }
+}
+@mixin account-input {
+    margin-block-start: 5px;
+    margin-block-end: 5px;
+    border: 3px solid $color-auth-input;
+    border-radius: 10px;
+    outline: none;
+    height: 70px;
+    width: 370px;
+    font-size: 18px;
+    font-weight: 400;
+}
+@mixin user-card {
+    background-color: $color-white;
+    height: 450px;
+    width: 400px;
+}
+@mixin brand-button-outline {
+    font-size: 18px;
+    padding: 7px 15px 7px 15px;
+    font-weight: 600;
+    border: 4px solid $brand-color-red;
+    color: $brand-color-red;
+    background-color: transparent;
+}
+@mixin white-bar {
+    display: block;
+    position: relative;
+    top: 44px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.5);
+    height: 1px;
+    width: 200px;
+}
+@mixin guest-card-image {
+    border-radius: 15px 15px 0 0;
+    height: 270px;
+    width: 100%;
+    background: rgb(255,151,151);
+    background: linear-gradient(180deg, rgba(255,151,151,1) 0%, rgba(255,75,75,1) 100%);
+}
+@mixin user-card-image {
+    border-radius: 15px 15px 0 0;
+    height: 270px;
+    width: 100%;
+    background: rgb(255,151,151);
+    background: linear-gradient(180deg, rgba(255,151,151,1) 0%, rgba(208,75,255,1) 100%);
+}
+@mixin box-shadow-25 {
+    -webkit-box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.25);
+    box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.25);
+}
+@mixin movie-detail-tag {
+    cursor: pointer;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    border: 2px solid $color-white;
+    color: $color-white;
+    margin-right: 16px;
+    padding: 5px 7px;
+    font-weight: 500;
+    i {
+        color: $brand-color-red;
+    }
+}
+@mixin rating-cards {
+    height: 100%;
+    width: 50%;
+    color: $color-white;
+    font-weight: 500;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+@mixin movie {
+opacity: 0.7;
+@include box-shadow-25;
+}
+@mixin search-bar {
+    color: $color-white;
+    z-index: 999;
+    height: 70px;
+    width: 100%;
+    .user-list {
+        @include anchor-underline;
+        @include flex-custom(row, center, center);
+        position: relative;
+        right: 77px;
+        font-size: 20px;
+        a { padding-left: 26px; }
+        a:hover { color: $brand-color-red; }
+    }
+    .search-bar {
+        @include flex-custom(row, center, center);
+        background-color: $text-box-bg;
+        width: 267px;
+        height: 29px;
+        border: 1px solid #fff;
+        i {
+            color: rgba(255, 255, 255, 0.418);
+            position: relative;
+            right: 4px;
+            top: 1px;
+        }
+        input {
+            position: relative;
+            left: 5px;
+            top: 1px;
+            font-size: 15px;
+            border: none;
+            outline: none;
+            background-color: transparent;
+            width: 215px;
+            color: $color-white;
+        }
+        input::placeholder {
+            font-weight: 200;
+            color: $color-white;
+        }
+    }
+}
