@@ -6,7 +6,7 @@ import { APIKey } from '../APIKey';
 export const searchMovie = text => dispatch => {
     dispatch({
         type: SEARCH_MOVIE,
-        payload: text // Search input value === action.payload
+        payload: text
     })
 };
 
