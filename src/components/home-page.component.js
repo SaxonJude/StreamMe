@@ -1,100 +1,95 @@
 import React from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Navbar from './layout/Navbar.component';
-import { HomeMovie } from './movie-item.component';
 import wave from '../styles/images/wave.svg';
-import '../styles/style.css';
+import { fetchMovie, getTrailer, fetchReview, fetchUpcoming, fetchPopular, fetchNowplaying, fetchToprated, loading } from '../actions';
+import { connect } from 'react-redux';
+import notfound from '../styles/images/notfound.jpg';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper-bundle.css';
+import UpComing from './carousels/carousel-upcoming.component';
+import Popular from './carousels/carousel-popular.component';
+import NowPlaying from './carousels/carousel-nowplaying.component';
+import TopRated from './carousels/carousel-topRated.component';
+import Spinner from './spinner.component';
 
-import { APIKey } from '../APIKey';
-
-const UPCOMING_API = `https://api.themoviedb.org/3/movie/upcoming?api_key=${APIKey}&language=en-US&page=1`;
-const POPULAR_API = `https://api.themoviedb.org/3/movie/popular?api_key=${APIKey}&language=en-US&page=1`;
-const NOWPLAYING_API = `https://api.themoviedb.org/3/movie/now_playing?api_key=${APIKey}&language=en-US&page=1`;
-const TOPRATED_API = `https://api.themoviedb.org/3/movie/top_rated?api_key=${APIKey}&language=en-US&page=1`;
+const BACKDROP = 'https://image.tmdb.org/t/p/w1280';
 
 class HomePage extends React.Component {
-    state = { movies: [], upcoming: [], popular: [], nowplaying: [], toprated: [] };
-    
-    componentDidMount() {
-        const req1 = axios.get(UPCOMING_API);
-        const req2 = axios.get(POPULAR_API);
-        const req3 = axios.get(NOWPLAYING_API);
-        const req4 = axios.get(TOPRATED_API);
+    state = { loading: false };
 
-        axios.all([req1, req2, req3, req4])
-        .then(axios.spread((...responses) => {
-            const upcoming = responses[0].data.results;
-            const popular = responses[1].data.results;
-            const nowplaying = responses[2].data.results;
-            const toprated = responses[3].data.results;
-            this.setState({ 
-                upcoming: upcoming.slice(0, 9),
-                popular: popular.slice(0, 9),
-                nowplaying: nowplaying.slice(0, 9),
-                toprated: toprated.slice(0, 9),
-             });
-        }));
+    componentDidMount() {
+        this.setState({ loading: false });
+        this.props.getTrailer('');
+        this.props.fetchMovie('');
+        this.props.fetchReview('');
+        this.props.fetchUpcoming();
+        this.props.fetchPopular();
+        this.props.fetchNowplaying();
+        this.props.fetchToprated();
+        this.setState({ loading: true });
     }
-    
+
+    onClick = () => {
+        console.log(this.props.loading);
+    }
+
     render() {
-        const upcoming = this.state.upcoming;
-        const popular = this.state.popular;
-        const nowplaying = this.state.nowplaying;
-        const toprated = this.state.toprated;
         return (
             <div>
                 <Navbar />
                 <div className="header">
-                    <div className="movie-details">
-                        <header>Latest</header>
-                        <h1>Honest Thief 3: United</h1>
-                        <h3>Action <span>|</span> 6.7 Rating</h3>
-                    </div>
-                    <div className="bottom_gradient"></div>
+                    {this.state.loading === true ? <Swiper 
+                        tag="section" wrapperTag="ul"  id="main_swiper"
+                        autoplay={{
+                            delay: 5000,
+                            disableOnInteraction: false
+                        }} 
+                        a11y={{ enabled: true, prevSlideMessage: 'Previous slide', nextSlideMessage: 'Next slide' }}
+                        slidesPerView={1} >
+                            {this.props.upcoming.map(movie => {
+                                return (
+                                    <SwiperSlide id='swiper_item' key={`${movie.id}`} tag="li">
+                                        <Link className="header-slide" to={`movie-details/${movie.id}`}>
+                                            <div className="movie-details">
+                                                <header>Latest</header>
+                                                <h1 onClick={() => console.log(movie)}>{movie.title}</h1>
+                                                <h3>{movie.release_date} <span>|</span> {movie.vote_average} Rating</h3>
+                                            </div>
+                                            <img src={`${BACKDROP}${movie.backdrop_path}`} alt={movie.title} />
+                                            <div className="bottom_gradient"></div>
+                                        </Link>
+                                    </SwiperSlide>
+                                )
+                            })}
+                    </Swiper> : <Spinner />}
                 </div>
                 <div className="movie_list">
                     <div className="movie-container">
                         <div className="home-carousel">
-                            <h1><Link to="/upcoming">Upcoming</Link></h1>
-                            <div>
-                                {upcoming.length > 0 && upcoming.map(movie => {
-                                    return (<HomeMovie key={movie.id} {...movie}/>);
-                                })}
-                            </div>
+                            <h1><Link onClick={this.onClick}>Upcoming</Link></h1>
+                            {this.state.loading === true ? <UpComing /> : <Spinner />}
                         </div>
                         <div className="divide-line">
                             <span></span>
                         </div>
                         <div className="home-carousel">
                             <h1><Link to="/popular">Popular</Link></h1>
-                            <div>
-                                {popular.length > 0 && popular.map(movie => {
-                                    return (<HomeMovie key={movie.id} {...movie}/>);
-                                })}
-                            </div>
+                            {this.state.loading === true ? <Popular /> : <Spinner />}
                         </div>
                         <div className="divide-line">
                             <span></span>
                         </div>
                         <div className="home-carousel">
                             <h1><Link to="/now-playing">Now Playing</Link></h1>
-                            <div>
-                                {nowplaying.length > 0 && nowplaying.map(movie => {
-                                    return (<HomeMovie key={movie.id} {...movie}/>);
-                                })}
-                            </div>
+                            {this.state.loading === true ? <NowPlaying /> : <Spinner />}
                         </div>
                         <div className="divide-line">
                             <span></span>
                         </div>
                         <div className="home-carousel">
                             <h1><Link to="/top-rated">Top Rated</Link></h1>
-                            <div>
-                                {toprated.length > 0 && toprated.map(movie => {
-                                    return (<HomeMovie key={movie.id} {...movie}/>);
-                                })}
-                            </div>
+                            {this.state.loading === true ? <TopRated /> : <Spinner />}
                         </div>
                     </div>
                     <img src={wave} className="footer_wave" alt="footer wave" />
@@ -141,4 +136,12 @@ class HomePage extends React.Component {
     }
 }
 
-export default HomePage;
+const mapStateToProps = state => ({
+    upcoming: state.movies.upcoming,
+    popular: state.movies.popular,
+    nowPlaying: state.movies.nowPlaying,
+    topRated: state.movies.topRated,
+    latest: state.movies.latest,
+});
+
+export default connect(mapStateToProps, { fetchMovie, getTrailer, fetchReview, fetchUpcoming, fetchPopular, fetchNowplaying, fetchToprated })(HomePage);
