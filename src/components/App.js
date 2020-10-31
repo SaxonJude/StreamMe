@@ -7,6 +7,7 @@ import jwt_decode from "jwt-decode";
 import setAuthToken from "../utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "../actions/authActions";
 
+//Import Components
 import Explore from './explore.component';
 import Home from './home-page.component';
 import AccountRouting from './account-routing.component';
@@ -22,7 +23,7 @@ import TopRated from './top-rated.component';
 import MovieDetails from './movie-details.component';
 import Cast from './cast-details.component.js';
 
-
+// User Auth 
 if (localStorage.jwtToken) {
     const token = localStorage.jwtToken;
     setAuthToken(token);
