@@ -15,7 +15,7 @@ It uses JWT Token for user AUTH and users are stored in MongoDB Atlas which cont
 ### Inital Figma Design
 [https://dribbble.com/shots/14329752-StreamMe-TMDB-desktop-ui-layout](https://dribbble.com/shots/14329752-StreamMe-TMDB-desktop-ui-layout)
 
-### Hosted with netlify
+### Hosted / Deployed with Heroku
 
 [**STREAMME.world**](http://www.streamme.world/)
 
